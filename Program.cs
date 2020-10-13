@@ -45,7 +45,7 @@ namespace Part_9_Classes
             foreach (Student student in students)
             {
                 Console.WriteLine(student.StudentNumber);
-
+                Console.WriteLine(student.Email);
             }
 
 

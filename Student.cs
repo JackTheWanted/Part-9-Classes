@@ -22,6 +22,7 @@ namespace Part_9_Classes
             studentNum = generator.Next(999) + 555000;
             GenerateEmail();
         }
+
         public string FirstName
         {
             get
@@ -34,6 +35,7 @@ namespace Part_9_Classes
                 GenerateEmail();
             }
         }
+
          public string LastName
         {
             get
@@ -46,6 +48,7 @@ namespace Part_9_Classes
                 GenerateEmail();
             }
         }
+
         public int StudentNumber
         {
             get
@@ -53,15 +56,36 @@ namespace Part_9_Classes
                 return studentNum;
             }
         }
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+        }
+
+
         public void ResetStudentNumber()
         {
             this.studentNum = generator.Next(999) + 555000;
             GenerateEmail();
         }
+
         public override string ToString()
         {
             return firstName + " " + lastName;
         }
+
+        public override bool Equals(object obj)
+        {
+            Student student = obj as Student; //cast obj to Student
+            if (student == null) //protects us in case obj is null
+                return false;
+
+            return lastName;
+            
+        }
+
         private void GenerateEmail()
         {
             string firstThree, lastThree;
@@ -84,6 +108,7 @@ namespace Part_9_Classes
                 lastThree = lastName.Substring(0, 3);
             }
 
+            
             email = firstThree + lastThree + (StudentNumber + "").Substring(3) + "@ICS4U.com";
            
             
