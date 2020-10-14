@@ -44,10 +44,15 @@ namespace Part_9_Classes
 
             foreach (Student student in students)
             {
-                Console.WriteLine(student.StudentNumber);
-                Console.WriteLine(student.Email);
+                Console.WriteLine(student.StudentNumber + " " + student.Email);
+                
             }
 
+            students.Sort();
+            foreach (Student student in students)
+            {
+                Console.WriteLine(student);
+            }
 
             Console.ReadLine();
         }

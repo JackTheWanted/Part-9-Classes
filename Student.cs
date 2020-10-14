@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Part_9_Classes
 {
     
-    class Student
+    class Student : IComparable<Student>
     {
         private static Random generator = new Random();
         private string firstName;
@@ -78,12 +78,19 @@ namespace Part_9_Classes
 
         public override bool Equals(object obj)
         {
-            Student student = obj as Student; //cast obj to Student
-            if (student == null) //protects us in case obj is null
+            Student student = obj as Student;   //cast object to Student for comparison
+            if (student == null)
                 return false;
+            return this.FirstName == student.FirstName && this.LastName == student.LastName && this.StudentNumber == student.StudentNumber;
+        }
 
-            return lastName;
-            
+    
+        public int CompareTo(Student that)
+        {
+            if (this.LastName.CompareTo(that.LastName) == 0) //If last names are equal, compares first names
+                return this.StudentNumber.CompareTo(that.StudentNumber);
+
+            return this.LastName.CompareTo(that.LastName);  //Otherwise compares last names
         }
 
         private void GenerateEmail()
@@ -92,20 +99,20 @@ namespace Part_9_Classes
 
             if (firstName.Length <= 3)
             {
-                firstThree = firstName;
+                firstThree = firstName.ToLower();
             }
             else
             {
-                firstThree = firstName.Substring(0, 3);
+                firstThree = firstName.Substring(0, 3).ToLower();
             }
 
             if (lastName.Length <= 3)
             {
-                lastThree = lastName;
+                lastThree = lastName.ToLower();
             }
             else
             {
-                lastThree = lastName.Substring(0, 3);
+                lastThree = lastName.Substring(0, 3).ToLower();
             }
 
             
@@ -113,6 +120,7 @@ namespace Part_9_Classes
            
             
         }
+
     }
 
     
